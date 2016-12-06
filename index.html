@@ -5,6 +5,10 @@
   <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
 
   <style>
+    h1 {
+      font: helvetica;
+      margin: 50px 400px 0px 400px;
+    }
   </style>
 
   <script>
@@ -30,16 +34,19 @@
     */
         var myChart = new dimple.chart(svg, data);
         var x = myChart.addCategoryAxis("x", "height");
-        myChart.addMeasureAxis("y", "avg");
-        myChart.addSeries(["name", "handedness", "height",
-                "weight", "avg", "HR"], dimple.plot.bubble);
+        x.title = "Height (in inches)"
+        var y = myChart.addMeasureAxis("y", "avg");
+        y.tickFormat = ".3f"
+        y.title = "Batting average"
+        var bar = myChart.addSeries(null, dimple.plot.bar);
+        bar.aggregate = dimple.aggregateMethod.avg;
         myChart.draw();
-
   }
   </script>
 </head>
 
 <body>
+  <h1>Batting Average Slopes Downward Along Height</h1>
   <svg class="chart"></svg>
   <script type="text/javascript">
     /*
