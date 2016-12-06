@@ -11,6 +11,8 @@ After getting the first feedback, I added "handedness" to the category such that
 
 After getting the second feedback, I tried to incorporate the number of players in each group to the graph. Hence, I stopped using bars, but bubbles to represent each group. It is because I can then use the size of the bubbles to represent the number of players. After using bubbles in the graph, I found that there are actually left-handed players in height 78 and 80 inches group, and right-handed players in height 79 inches. They could not been shown in the bar chart because they have batting average of zero. And we can see that the small jump in height 79 inches group is driven by one outlier left-handed player. In general, there are more right-handed players than left-handed, and more left-handed than both hands. It is also true for different handedness that the batting average in general trends downwards as the height increases, except that some outliers happened among tall players. Also, in general the batting average for left-handed and both hands players are higher than right-handed players.
 
+After gettting the third feedback, I tried to add another series for the Home Run for each heights group. Similar to the batting average, I find the average of the Home Run for each group. Instead of using bar chart, I used line chart so that it won't obscure the bubble chart. The trend for the Home Run average is interesting. It doesn't follow the batting average exactly. It has a peak at height 67 inches, which means players in that group have both high batting average and Home Runs. However, it is not the same case for height 65 and 66 inches, where players have high batting average but not high Home Runs. In general, the trends for Home Run is not so clear, and I assume that is driven by other factors than height. 
+
 ## Feedback
 **Feedback 1**
 
@@ -21,6 +23,8 @@ It will be interesting to see the trends of the players in each height category 
 The graph doesn't show how many players are in each height group. The outliers in the trend may be driven by a small number of players.
 
 **Feeback 3**
+
+Can we also know the trend of the average of the Home Run among different heights groups?
 
 ## Resources
 list any sources you consulted to create your visualization

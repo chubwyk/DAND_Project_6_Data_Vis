@@ -9,6 +9,10 @@
       font: helvetica;
       margin: 50px 400px 0px 400px;
     }
+    h2 {
+      font: helvetica;
+      margin: 0px 400px 0px 400px;
+    }
   </style>
 
   <script>
@@ -34,17 +38,25 @@
     */
         var myChart = new dimple.chart(svg, data);
         // define x-axis using "height" and "handedness" as category
-        var x = myChart.addCategoryAxis("x", ["height", "handedness"]);
+        var x = myChart.addCategoryAxis("x", "height");
         x.title = "Height (in inches)"
-        // define y-axis
-        var y = myChart.addMeasureAxis("y", "avg");
-        y.tickFormat = ".3f"
-        y.title = "Batting average"
-        // size the bubbles
+        // define y-axis for the batting average
+        var y1 = myChart.addMeasureAxis("y", "avg");
+        y1.tickFormat = ".3f"
+        y1.title = "Batting average"
+        // define secondary y-axis for Home Run Average
+        var y2 = myChart.addMeasureAxis("y", "HR");
+        y2. title = "Home Run Average"
+        // set the size for the bubbles
         var z = myChart.addMeasureAxis("z", "name");
-        var bubble = myChart.addSeries("handedness", dimple.plot.bubble);
+        // add the bubble series
+        var bubble = myChart.addSeries(["handedness"], dimple.plot.bubble, [x, y1, z]);
         // group the data by handedness and calculate the average
         bubble.aggregate = dimple.aggregateMethod.avg;
+        // add the line series
+        var line = myChart.addSeries(null, dimple.plot.line, [x, y2, z]);
+        // group the data by height and calculate the average
+        line.aggregate = dimple.aggregateMethod.avg;
         // add legend
         myChart.addLegend(100, 30, 1000, 20, "right");
         myChart.draw();
@@ -53,7 +65,8 @@
 </head>
 
 <body>
-  <h1>Short and Left-Handed Players have Higher Batting Average?</h1>
+  <h1>Short and Left-Handed Players have Higher Batting Average</h1>
+  <h2>But trends not so clear for Home Run</h2>
   <svg class="chart"></svg>
   <script type="text/javascript">
     /*
