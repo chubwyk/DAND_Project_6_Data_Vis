@@ -33,13 +33,19 @@
       Dimple.js Chart construction code
     */
         var myChart = new dimple.chart(svg, data);
+        // define x-axis using "height" and "handedness" as category
         var x = myChart.addCategoryAxis("x", ["height", "handedness"]);
         x.title = "Height (in inches)"
+        // define y-axis
         var y = myChart.addMeasureAxis("y", "avg");
         y.tickFormat = ".3f"
         y.title = "Batting average"
-        var bar = myChart.addSeries("handedness", dimple.plot.bar);
-        bar.aggregate = dimple.aggregateMethod.avg;
+        // size the bubbles
+        var z = myChart.addMeasureAxis("z", "name");
+        var bubble = myChart.addSeries("handedness", dimple.plot.bubble);
+        // group the data by handedness and calculate the average
+        bubble.aggregate = dimple.aggregateMethod.avg;
+        // add legend
         myChart.addLegend(100, 30, 1000, 20, "right");
         myChart.draw();
   }
