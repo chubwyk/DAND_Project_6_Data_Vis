@@ -27,4 +27,4 @@ The graph doesn't show how many players are in each height group. The outliers i
 Can we also know the trend of the average of the Home Run among different heights groups?
 
 ## Resources
-Dimplejs official site [link](http://dimplejs.org/)
+[Dimplejs official site](http://dimplejs.org/)
