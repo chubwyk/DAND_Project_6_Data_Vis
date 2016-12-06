@@ -33,20 +33,21 @@
       Dimple.js Chart construction code
     */
         var myChart = new dimple.chart(svg, data);
-        var x = myChart.addCategoryAxis("x", "height");
+        var x = myChart.addCategoryAxis("x", ["height", "handedness"]);
         x.title = "Height (in inches)"
         var y = myChart.addMeasureAxis("y", "avg");
         y.tickFormat = ".3f"
         y.title = "Batting average"
-        var bar = myChart.addSeries(null, dimple.plot.bar);
+        var bar = myChart.addSeries("handedness", dimple.plot.bar);
         bar.aggregate = dimple.aggregateMethod.avg;
+        myChart.addLegend(100, 30, 1000, 20, "right");
         myChart.draw();
   }
   </script>
 </head>
 
 <body>
-  <h1>Batting Average Slopes Downward Along Height</h1>
+  <h1>Short and Left-Handed Players have Higher Batting Average?</h1>
   <svg class="chart"></svg>
   <script type="text/javascript">
     /*
