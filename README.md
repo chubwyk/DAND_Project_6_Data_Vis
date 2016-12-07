@@ -31,10 +31,15 @@ Can we also know the trend of the average of the Home Run among different height
 **Feeback 4**
 
 Below are some feedbacks from Udacity Project Reviewer:
+
 1. Set the window size such that the chart auto fits the browser.
+
 2. Rename the information in the tooltips such that it is more comprehensible for the reader, e.g. "avg" becomes "batting average".
+
 3. Rename the legend labels, e.g. "L" becomes "Left-Handed".
+
 4. Place the title closer to the chart.
+
 5. Add the number of players (as bubbles) in each Height group for the Home Run series.
 
 ## Resources
