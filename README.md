@@ -13,6 +13,8 @@ After getting the second feedback, I tried to incorporate the number of players 
 
 After gettting the third feedback, I tried to add another series for the Home Run for each heights group. Similar to the batting average, I find the average of the Home Run for each group. Instead of using bar chart, I used line chart so that it won't obscure the bubble chart. The trend for the Home Run average is interesting. It doesn't follow the batting average exactly. It has a peak at height 67 inches, which means players in that group have both high batting average and Home Runs. However, it is not the same case for height 65 and 66 inches, where players have high batting average but not high Home Runs. In general, the trends for Home Run is not so clear, and I assume that is driven by other factors than height.
 
+After getting the fourth feedback, I made some amendments to the windowsize, the tooltips, the legend labels, and the title. Also, I tried to add the total number of players in each Height group for the Home Run series. I added that information in bubbles form, and to avoid confusion with the bubbles in the Batting Average series, I turned the fill for Home Run bubbles to transparent. Not surprisingly, the area of the Home Run bubles should be the sum of the three bubbles for the Batting Average series. 
+
 ## Feedback
 **Feedback 1**
 
@@ -25,6 +27,15 @@ The graph doesn't show how many players are in each height group. The outliers i
 **Feeback 3**
 
 Can we also know the trend of the average of the Home Run among different heights groups?
+
+**Feeback 4**
+
+Below are some feedbacks from Udacity Project Reviewer:
+1. Set the window size such that the chart auto fits the browser.
+2. Rename the information in the tooltips such that it is more comprehensible for the reader, e.g. "avg" becomes "batting average".
+3. Rename the legend labels, e.g. "L" becomes "Left-Handed".
+4. Place the title closer to the chart.
+5. Add the number of players (as bubbles) in each Height group for the Home Run series.
 
 ## Resources
 [Dimplejs official site](http://dimplejs.org/)

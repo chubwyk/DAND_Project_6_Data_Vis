@@ -5,13 +5,9 @@
   <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
 
   <style>
-    h1 {
-      font: helvetica;
-      margin: 50px 400px 0px 400px;
-    }
-    h2 {
-      font: helvetica;
-      margin: 0px 400px 0px 400px;
+    body {
+      width: auto;
+      height: auto;
     }
   </style>
 
@@ -22,16 +18,37 @@
     */
 
         "use strict";
-        var margin = 75,
-            width = 1400 - margin,
-            height = 600 - margin;
+        var width = window.innerWidth;
+        var height = window.innerHeight;
 
         var svg = d3.select("body")
           .append("svg")
-            .attr("width", width + margin)
-            .attr("height", height + margin)
+            .attr("width", width)
+            .attr("height", height)
           .append('g')
               .attr('class','chart');
+
+        // Write the title on the Chart
+        var title = d3.select("svg")
+          .append("text")
+          .attr("x", 150)
+          .attr("y", 20)
+          .attr("text-anchor", "center")
+          .style("font", "helvetica")
+          .style("font-size", "25px")
+          .style("font-weight", "bold")
+          .text("Short and Left-Handed Players have Higher Batting Average");
+
+        // Write the sub title on the Chart
+        var title = d3.select("svg")
+          .append("text")
+          .attr("x", 150)
+          .attr("y", 40)
+          .attr("text-anchor", "center")
+          .style("font", "helvetica")
+          .style("font-size", "20px")
+          .style("font-weight", "bold")
+          .text("But trends not so clear for Home Run");
 
     /*
       Dimple.js Chart construction code
@@ -53,26 +70,62 @@
         var bubble = myChart.addSeries(["handedness"], dimple.plot.bubble, [x, y1, z]);
         // group the data by handedness and calculate the average
         bubble.aggregate = dimple.aggregateMethod.avg;
+        // rename the labels shown when mouse hovers on top of the data
+        bubble.getTooltipText = function (e) {
+          return [
+            "height: " + e.x,
+            "batting average: " + e.y.toFixed(3),
+            "number of players: " + e.z,
+          ];
+        };
         // add the line series
-        var line = myChart.addSeries(null, dimple.plot.line, [x, y2, z]);
+        var HR_line = myChart.addSeries(null, dimple.plot.line, [x, y2, z]);
         // group the data by height and calculate the average
-        line.aggregate = dimple.aggregateMethod.avg;
+        HR_line.aggregate = dimple.aggregateMethod.avg;
+        // rename the labels shown when mouse hovers on top of the data
+        HR_line.getTooltipText = function (e) {
+          return [
+            "height: " + e.x,
+            "Home Run average: " + e.y.toFixed(1),
+          ];
+        };
+        var HR_bubble = myChart.addSeries(null, dimple.plot.pie, [x, y2, z]);
+        // group the data by handedness and calculate the average
+        HR_bubble.aggregate = dimple.aggregateMethod.avg;
+        // rename the labels shown when mouse hovers on top of the data
+        HR_bubble.getTooltipText = function (e) {
+          return [
+            "height: " + e.x,
+            "batting average: " + e.y.toFixed(3),
+            "number of players: " + e.z,
+          ];
+        };
+
         // add legend
-        myChart.addLegend(100, 30, 1000, 20, "right");
+        var legend = myChart.addLegend("80%", "12%", "5%", "30%", "right");
+        legend.fontSize = "auto";
         myChart.draw();
+
+        // change the labels name in the legend
+        d3.select('.dimple-legend-text.dimple-b').text("Both-handed");
+        d3.select('.dimple-legend-text.dimple-l').text("Left-handed");
+        d3.select('.dimple-legend-text.dimple-r').text("Right-handed");
+        d3.select('.dimple-legend-text.dimple-all').text("Home Run");
+
+        // change the bubble for Home Run to transparent
+        d3.selectAll('.dimple-series-2.dimple-bubble').attr("fill", "transparent");
+
   }
   </script>
 </head>
 
 <body>
-  <h1>Short and Left-Handed Players have Higher Batting Average</h1>
-  <h2>But trends not so clear for Home Run</h2>
-  <svg class="chart"></svg>
   <script type="text/javascript">
     /*
       Use D3 to load the CSV file
     */
     d3.csv("baseball_data.csv", draw);
+
   </script>
 </body>
 </html>
